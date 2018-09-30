@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
 import ExerciseScreen from '../screens/ExerciseScreen';
+import ExerciseExamplesScreen from '../screens/ExerciseExamplesScreen';
 import SettingsScreen from '../screens/SettingScreen';
 import MyWorkoutScreen from '../screens/MyWorkout';
 
@@ -17,6 +18,7 @@ const SettingsStack = createStackNavigator({
 
 const ExerciseStack = createStackNavigator({
     Exercise: { screen: ExerciseScreen },
+    ExerciseExamples: {screen:ExerciseExamplesScreen},
 });
 
 const MyWorkoutStack = createStackNavigator({
