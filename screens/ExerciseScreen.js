@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 import ExerciseList from '../constants/exercises';
 
 export default class ExerciseScreen extends React.Component {
@@ -13,22 +13,30 @@ export default class ExerciseScreen extends React.Component {
     this.createRows = this.createRows.bind(this);
     this._mapEachExercisesToTouchable = this._mapEachExercisesToTouchable.bind(this);
   }
-  _onPressButton(name) {
-    // Alert.alert("calling component")
-    this.props.navigation.navigate('ExerciseExamples',{name})
+  _onPressButton(id) {
+    this.props.navigation.navigate('ExerciseExamples',{id})
   }
 
   _mapEachExercisesToTouchable(index) {
     return this.state.exercises
       .filter(exercise => exercise.id <= 3 * index && exercise.id > 3 * (index - 1))
       .map(exercise => {
-        return (<TouchableHighlight key={exercise.id} style={styles.cell} onPress={() => this._onPressButton(exercise.name)}>
+        return (
+        <TouchableHighlight  key={exercise.id} style={styles.cell} onPress={() => this._onPressButton(exercise.id)}>
           <View>
             <Text>{exercise.name}</Text>
           </View>
         </TouchableHighlight>)
       });
   }
+  
+  createRows(index) {
+    return (
+      <View key={index} style={styles.row} >
+        {this._mapEachExercisesToTouchable(index)}
+      </View>);
+  }
+
   renderExercises() {
     let exercises = []
     for (let index = 1; index < 4; index++) {
@@ -37,12 +45,6 @@ export default class ExerciseScreen extends React.Component {
     return exercises;
   }
 
-  createRows(index) {
-    return (
-      <View key={index} style={styles.row} >
-        {this._mapEachExercisesToTouchable(index)}
-      </View>);
-  }
   render() {
     return (
       <View style={styles.container}>

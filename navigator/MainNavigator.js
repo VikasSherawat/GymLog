@@ -17,9 +17,10 @@ const SettingsStack = createStackNavigator({
 });
 
 const ExerciseStack = createStackNavigator({
-    Exercise: { screen: ExerciseScreen },
+    ExerciseScreen: { screen: ExerciseScreen },
     ExerciseExamples: {screen:ExerciseExamplesScreen},
-});
+},
+);
 
 const MyWorkoutStack = createStackNavigator({
     MyWorkout: { screen: MyWorkoutScreen },
