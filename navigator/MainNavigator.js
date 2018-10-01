@@ -32,7 +32,6 @@ export default createBottomTabNavigator(
     MyWorkout: { screen: MyWorkoutStack },
     Exercises: { screen: ExerciseStack },
     Settings: { screen: SettingsStack },
-
   },
   {
     navigationOptions: ({ navigation }) => ({

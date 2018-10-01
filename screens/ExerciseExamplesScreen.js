@@ -1,19 +1,44 @@
 import React from 'react';
-import { ScrollView, Text, View,StyleSheet } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
-
+import {ScrollView, StyleSheet } from 'react-native';
+import ExerciseExamples from '../constants/exerciseExample';
+import ExerciseInfo from '../components/ExerciseInfo';
 export default class ExerciseExamplesScreen extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     
-  }
-    render() {
-      return (
-        <ScrollView style={styles.container}>
-          <Text>{this.props.navigation.getParam('id','Default Value')}</Text>
-        </ScrollView>
-      );
+    this.state = {
+      examples: [],
     }
+    this.getExerciseExampleList = this.getExerciseExampleList.bind(this);
+    this.mapExampleListToComponent = this.mapExampleListToComponent.bind(this);
+  }
+
+  getExerciseExampleList(exerciseId) {
+    const examples = ExerciseExamples.filter(exercise => exerciseId === exerciseId).map(exercise => exercise.examples)[0];
+    if(examples){
+      this.setState({
+        examples:examples,
+      })
+    }
+  }
+  componentDidMount(){
+    this.getExerciseExampleList(1);
+  }
+
+
+  mapExampleListToComponent(){
+    console.log("updating component")
+    return this.state.examples.map(exercise=><ExerciseInfo exercise={exercise}/>)
+  }
+
+  render() {
+    let items = this.state.examples;
+    return (
+      <ScrollView style={styles.container}>
+        { items.map(exercise=><ExerciseInfo key={exercise.id} exercise={exercise}/> )}
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
