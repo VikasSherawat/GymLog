@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableHighlight,Text,StyleSheet,Alert} from 'react-native';
+import {Text,StyleSheet} from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 export default class ExerciseInfo extends React.Component {
     render(){

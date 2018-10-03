@@ -7,6 +7,7 @@ import ExerciseScreen from '../screens/ExerciseScreen';
 import ExerciseExamplesScreen from '../screens/ExerciseExamplesScreen';
 import SettingsScreen from '../screens/SettingScreen';
 import MyWorkoutScreen from '../screens/MyWorkout';
+import {Platform}  from 'react-native';
 
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -58,5 +59,6 @@ export default createBottomTabNavigator(
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray',
     },
+    mode: Platform.OS === 'ios' ? 'modal':'none',
   }
 );
